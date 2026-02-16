@@ -1,3 +1,6 @@
+// Pre Defined commands in tabs
+
+/*******************************************************************************/
 const commands = [
     {
         title: "About",
@@ -109,6 +112,10 @@ const commands = [
         ]
     }
 ];
+
+
+/***********************************************************************************/
+
 
 // Wait for DOM to be fully loaded
 document.addEventListener('DOMContentLoaded', function () {

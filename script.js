@@ -4,6 +4,8 @@
 const WEATHER_API_KEY = "79f115636a4cf2563e05d2ec3b2f664e";
 const WEATHER_API_URL = "https://api.openweathermap.org/data/2.5/weather";
 
+/*********************************************************/
+
 // DOM Elements
 const aiCore = document.getElementById('aiCore');
 const coreStatus = document.getElementById('coreStatus');
