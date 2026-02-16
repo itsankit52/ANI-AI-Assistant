@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ANI - AI Assistant</title>
+
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&family=Exo+2:wght@300;400;500&display=swap"
+        rel="stylesheet">
+    <link rel="icon"
+        href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🤖</text></svg>">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+</head>
+
+<body>
+    <!-- Animated Background -->
+    <div class="background">
+        <div class="grid-lines"></div>
+        <div class="particles" id="particles"></div>
+    </div>
+
+    <!-- Main Container -->
+    <div class="container">
+        <!-- Header with Status Info -->
+        <header class="header">
+            <div class="logo">
+                <h1>ANI <span class="logo-subtitle">AI Assistant</span></h1>
+            </div>
+
+            <div class="status-info">
+                <!-- Menu Button (Top Right) -->
+                <button class="menu-btn" id="openGuideBtn" title="User Guide">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <div class="status-item">
+                    <i class="fas fa-clock"></i>
+                    <span id="time">--:--:--</span>
+                </div>
+                <div class="status-item">
+                    <i class="fas fa-calendar-day"></i>
+                    <span id="date">-- --- ----</span>
+                </div>
+                <div class="status-row">
+                    <i class="fas fa-battery-three-quarters"></i>
+                    <span id="battery">--%</span>
+                </div>
+                <div class="status-row">
+                    <i class="fas fa-signal"></i>
+                    <span id="network">Online</span>
+                </div>
+            </div>
+        </header>
+
+        <!-- Central AI Core -->
+        <div class="ai-core-container">
+            <div class="core-halo"></div>
+            <div class="core-rings">
+                <div class="ring ring-1"></div>
+                <div class="ring ring-2"></div>
+                <div class="ring ring-3"></div>
+                <div class="ring ring-4"></div>
+                <div class="ring ring-5"></div>
+                <div class="ring ring-6"></div>
+                <div class="ring ring-7"></div>
+                <div class="ring ring-8"></div>
+                <div class="ring ring-9">
+                    <img src="ChatGPT Image Feb 4, 2026, 01_06_16 AM.png" alt="">
+                </div>
+                
+                <div class="ring ring-10"></div> 
+            </div>
+
+            <!-- <div class="ai-core" id="aiCore">
+                <div class="core-glow"></div>
+                <div class="core-inner">
+                    <div class="core-scan"></div>
+                    <div class="core-scan2"></div>
+                    <div class="core-scan3"></div>
+                </div>
+                <div class="core-energy-swirl"></div>
+            </div> -->
+
+            <div class="core-status" id="coreStatus">Idle</div>
+            <div class="core-pulse"></div>
+        </div>
+
+        <!-- Main Content Area -->
+        <main class="main-content">
+            <!-- Left Panel - Voice Interaction -->
+            <section class="panel left-panel">
+                <div class="panel-header">
+                    <h2><i class="fas fa-microphone"></i> Voice Control</h2>
+                    <div class="status-indicators">
+                        <div class="indicator" id="listeningIndicator">
+                            <div class="indicator-light"></div>
+                            <span>Listening</span>
+                        </div>
+                        <div class="indicator" id="processingIndicator">
+                            <div class="indicator-light"></div>
+                            <span>Processing</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="panel-content">
+                    <div class="voice-visualizer" id="voiceVisualizer">
+                        <div class="bar"></div>
+                        <div class="bar"></div>
+                        <div class="bar"></div>
+                        <div class="bar"></div>
+                        <div class="bar"></div>
+                        <div class="bar"></div>
+                        <div class="bar"></div>
+                        <div class="bar"></div>
+                    </div>
+
+                    <div class="voice-controls">
+                        <button class="btn voice-btn" id="startListening">
+                            <i class="fas fa-microphone"></i> Activate ANI-AI
+                        </button>
+                        <button class="btn voice-btn secondary" id="stopListening" disabled>
+                            <i class="fas fa-microphone-slash"></i> Deactivate ANI-AI
+                        </button>
+                    </div>
+
+                    <div class="command-log">
+                        <h3><i class="fas fa-history"></i> Command Log</h3>
+                        <div class="log-container" id="commandLog">
+                            <div class="log-entry system">
+                                <span class="log-time">[SYSTEM]</span>
+                                <span class="log-text">ANI AI Assistant initialized. Say "Hello ANI" to
+                                    begin.</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Right Panel - Information & Controls -->
+            <section class="panel right-panel">
+                <div class="panel-header">
+                    <h2><i class="fas fa-info-circle"></i> System & Controls</h2>
+                </div>
+
+                <div class="panel-content">
+                    <!-- Command Input Widget -->
+                    <div class="widget commands-widget">
+                        <div class="command-mode-toggle">
+                            <button id="voiceModeBtn" class="mode-btn active">
+                                <i class="fas fa-microphone"></i> Voice Mode
+                            </button>
+                            <button id="textModeBtn" class="mode-btn">
+                                <i class="fas fa-keyboard"></i> Text Mode
+                            </button>
+                        </div>
+
+                        <div class="text-input-container">
+                            <input type="text" id="textCommandInput"
+                                placeholder="Type your command here... (Press Enter to send)"
+                                class="text-command-input">
+                            <button id="sendTextCommand" class="text-command-btn">
+                                <i class="fas fa-paper-plane"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Weather Widget -->
+                    <div class="widget weather-widget">
+                        <div class="widget-header">
+                            <h3><i class="fas fa-cloud-sun"></i> Weather</h3>
+                            <button class="btn-icon" id="refreshWeather">
+                                <i class="fas fa-sync-alt"></i>
+                            </button>
+                        </div>
+                        <div class="weather-content" id="weatherContent">
+                            <div class="weather-icon">
+                                <i class="fas fa-spinner fa-spin"></i>
+                            </div>
+                            <div class="weather-details">
+                                <div class="temperature">--°C</div>
+                                <div class="condition">Loading...</div>
+                                <div class="location">--</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- System Status Widget -->
+                    <div class="widget status-widget">
+                        <h3><i class="fas fa-heartbeat"></i> System Status</h3>
+                        <div class="status-list">
+                            <div class="status-row">
+                                <span>AI Core</span>
+                                <span class="status-value active">Operational</span>
+                            </div>
+                            <div class="status-row">
+                                <span>Voice Module</span>
+                                <span class="status-value" id="voiceStatus">Ready</span>
+                            </div>
+                            <div class="status-row">
+                                <span>Speech Synthesis</span>
+                                <span class="status-value" id="speechStatus">Ready</span>
+                            </div>
+                            <div class="status-row">
+                                <span>Network</span>
+                                <span class="status-value" id="networkStatus">Online</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- User Guide Modal -->
+        <div class="modal-overlay" id="modalOverlay">
+            <div class="modal">
+                <div class="modal-header">
+                    <h2><i class="fas fa-code"></i>Pre Defined Commands</h2>
+                    <button class="close-btn" id="closeModalBtn">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+
+                <div class="modal-content" id="modalContent">
+                    <!-- Commands will be inserted here by JavaScript -->
+                </div>
+            </div>
+        </div>
+        <!-- Footer with Instructions -->
+        <footer class="footer">
+            <div class="instructions">
+                <h3><i class="fas fa-bullhorn"></i> Voice & Text Command Examples:</h3>
+                <div class="instruction-list">
+                    <span>"Hello ANI"</span>
+                    <span>"Open YouTube"</span>
+                    <span>"Search for artificial intelligence"</span>
+                    <span>"What time is it?"</span>
+                    <span>"What's the weather?"</span>
+                    <span>"Go back"</span>
+                    <span>"Reload page"</span>
+                </div>
+            </div>
+            <div class="copyright">
+                © 2026 Ankit Thakur. All rights reserved.
+            </div>
+        </footer>
+    </div>
+
+    <!-- Scripts -->
+    <script src="script.js"></script>
+    <script src="guide.js"></script>
+
+</body>
+
+</html>
