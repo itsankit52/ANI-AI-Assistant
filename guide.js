@@ -1,4 +1,4 @@
-// Pre Defined commands in tabs
+// Pre Defined commands in tabs open to see commands
 
 /*******************************************************************************/
 const commands = [
